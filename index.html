@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Tab Menu with jQuery</title>
+    <style>
+        .tabs {
+            display: flex;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .tab {
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            margin-right: 5px;
+        }
+        .tab.active {
+            background-color: #e918a3;
+            color: white;
+        }
+        .content {
+            display: none;
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="tabs">
+        <div class="tab active" data-tab="about">О нас</div>
+        <div class="tab" data-tab="services">Услуги</div>
+        <div class="tab" data-tab="contacts">Контакты</div>
+    </div>
+
+    <div class="content" id="about" style="display: block;">Здесь информация о нас...</div>
+    <div class="content" id="services">Информация о наших услугах...</div>
+    <div class="content" id="contacts">Контактная информация...</div>
+
+    <script>
+        $(document).ready(function () {
+            // Обработка клика по вкладке
+            $('.tab').on('click', function () {
+                // Снимаем класс "active" с всех вкладок
+                $('.tab').removeClass('active');
+                // Добавляем класс "active" на кликнутую вкладку
+                $(this).addClass('active');
+
+                // Скрываем все секции
+                $('.content').hide();
+
+                // Показываем соответствующую секцию
+                const tabId = $(this).data('tab');
+                $('#' + tabId).show();
+            });
+        });
+    </script>
+</body>
+
+</html>
